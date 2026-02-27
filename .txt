@@ -1,0 +1,45 @@
+## Objetivo
+Continuar desenvolvendo o projeto e aplicando melhorias
+
+
+- Separar a lógica de requisição em arquivos separados (js fará a requisição para o php)✅
+
+- Criar uma função para responder em JSON e evitar a replicação de código ✅
+
+- Criar uma mensagem de confirmação antes de deletar os registros (confirm do JS por enquanto que mais tarde será um modal de mensagem) ⏫
+
+- Criar um CSS bonito e simples 
+
+- Configurar o ambiente com o arquivo env e se preparar para o primeiro deploy
+
+
+// Lista de arquivos de visualização (os que não devem conter lógica)
+
+- index.php (remover lógica) 
+- cadastrar.php (limpo) 
+- editar.php (remover lógica)  
+
+-> Criar a lógica para buscar todos os usuários  ✅ 
+-> Criar a lógica para buscar usuário pelo id  ✅ 
+-> Mover os arquivos de lógica para uma pasta como api/ ✅ 
+
+
+
+// Lista de arquivos com lógica pro banco
+
+-alterar.php 
+-excluir.php 
+-inserir.php 
+ 
+// Arquivos de configuração
+
+-connection.php
+
+// Arquivos Helpers
+
+-> Criar a pasta helpers/
+-> inserir um arquivo que vai conter a função de responder em JSON
+
+
+
+-> Mover os arquivos de lógica para uma pasta como api/
