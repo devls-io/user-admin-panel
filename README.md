@@ -92,6 +92,14 @@ DB_USER=root
 DB_PASS=sua_senha
 ```
 
+### 🔑 5. Criando o Usuário Administrador
+
+Como o sistema agora possui proteção de rotas, você precisará de uma conta de administrador para acessar o painel:
+
+1. Acesse a pasta `data/` pelo terminal ou navegador.
+2. Execute o arquivo `gerar_admin.php`.
+3. O script irá gerar automaticamente o usuário padrão definido no arquivo (utilizando `password_hash`).
+
 ## 🛡️ Segurança e Validações
 
 O projeto foi construído com foco em integridade de dados e boas práticas de segurança:
