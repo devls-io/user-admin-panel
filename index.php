@@ -1,4 +1,5 @@
 <?php
+require_once 'helpers/auth_check.php';
 require_once 'data/list_users.php';
 require_once 'config/connection.php';
 
@@ -23,7 +24,7 @@ try{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de usuarios</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -60,8 +61,10 @@ try{
 
 
     <a href="cadastrar.php">Inserir Novo Registro</a>
+
+    <a href="logout.php">Logout</a>
 </body>
-<script src="modal.js"></script>
-<script src="script.js"></script>
+<script src="assets/js/modal.js"></script>
+<script src="assets/js/script.js"></script>
 
 </html>
