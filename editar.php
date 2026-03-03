@@ -1,4 +1,5 @@
 <?php 
+require_once 'helpers/auth_check.php';
 require_once 'data/get_user.php';
 require_once 'config/connection.php';
 
@@ -31,7 +32,7 @@ try{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -54,8 +55,8 @@ try{
     </form>
 
     <button onclick="javascript:location.replace('index.php')">Voltar</button>
-    <script src="modal.js"></script>
-    <script src="script.js"></script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
