@@ -15,10 +15,10 @@ A arquitetura foi desenhada seguindo princípios de **Separação de Responsabil
 - **api/**: Endpoints responsáveis pelo processamento das ações (Insert, Update, Delete).
 - **config/**: Arquivos de configuração e conexão com o banco de dados via PDO.
 - **data/**: Scripts de recuperação de dados (Listagem e busca por ID).
-- **helpers/**: Funções auxiliares para padronização de respostas JSON.
+- **helpers/**: Funções auxiliares para padronização de respostas JSON e autenticação.
 - **index.php**: Ponto de entrada principal que renderiza a interface e a listagem via SSR.
 - **.env**: Gerenciamento de variáveis de ambiente para credenciais do banco de dados.
-- **assets/**: Fotos do projeto.
+- **assets/**: Recursos estáticos (CSS, JS, Imagens).
 
 ## 📸 Demonstração do Painel
 
@@ -26,20 +26,20 @@ O sistema conta com uma interface moderna e responsiva, utilizando efeitos de de
 
 ### 🖥️ Visão Geral e Listagem
 
-![Listagem de Usuários](./assets/Capturar.PNG)
+![Listagem de Usuários](./assets/images/Capturar.PNG)
 
 ### 📝 Fluxo de Cadastro e Edição
 
 <p align="center">
-  <img src="./assets/cadastro.PNG" width="45%" />
-  <img src="./assets/editar.PNG" width="45%" />
+  <img src="./assets/images/cadastro.PNG" width="45%" />
+  <img src="./assets/images/editar.PNG" width="45%" />
 </p>
 
 ### 🗑️ Sistema de Exclusão
 
 <p align="center">
-  <img src="./assets/exclusao.PNG" width="45%" />
-  <img src="./assets/exclusao_completa.PNG" width="45%" />
+  <img src="./assets/images/exclusao.PNG" width="45%" />
+  <img src="./assets/images/exclusao_completa.PNG" width="45%" />
 </p>
 
 ## 🚀 Como Rodar Localmente
@@ -92,6 +92,14 @@ DB_USER=root
 DB_PASS=sua_senha
 ```
 
+### 🔑 5. Criando o Usuário Administrador
+
+Como o sistema agora possui proteção de rotas, você precisará de uma conta de administrador para acessar o painel:
+
+1. Acesse a pasta `data/` pelo terminal ou navegador.
+2. Execute o arquivo `gerar_admin.php`.
+3. O script irá gerar automaticamente o usuário padrão definido no arquivo (utilizando `password_hash`).
+
 ## 🛡️ Segurança e Validações
 
 O projeto foi construído com foco em integridade de dados e boas práticas de segurança:
@@ -99,3 +107,18 @@ O projeto foi construído com foco em integridade de dados e boas práticas de s
 - **Prevenção de SQL Injection**: Uso obrigatório de **PHP PDO com Prepared Statements** em todas as interações com o banco de dados.
 - **Sanitização de Dados**: Validação rigorosa de e-mails via `filter_var` e proteção contra IDs inexistentes ou inválidos.
 - **Variáveis de Ambiente**: Credenciais sensíveis isoladas em arquivo `.env` para evitar exposição no controle de versão.
+
+## 🆙 Últimas Atualizações
+
+### **Versão 1.1 - Março/2026**
+
+Nesta versão, o foco foi a implementação de uma camada de autenticação e melhorias na experiência do usuário (UX):
+
+- **Sistema de Login**: Implementação de autenticação de administradores com sessões seguras e proteção de rotas via PHP. [cite: 2026-02-19]
+- **Segurança de Senhas**: Uso de `password_hash` e `password_verify` para armazenamento seguro de credenciais. [cite: 2026-02-19]
+- **Refatoração UI/UX**:
+  - **Visibilidade de Senha**: Adicionada alternância de visibilidade (ícone de olho) utilizando JavaScript puro e manipulação de DOM. [cite: 2026-02-19]
+  - **Transição de Páginas**: Implementação de transição suave (_fade-in_) entre páginas via CSS para uma navegação mais fluida e profissional. [cite: 2026-02-19]
+- **Organização de Código**: Reestruturação completa das pastas para garantir a separação de responsabilidades (SoC). [cite: 2026-02-19]
+
+![Login](./assets/images/login.PNG)
