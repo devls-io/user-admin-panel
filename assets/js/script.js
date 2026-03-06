@@ -126,7 +126,7 @@ const sendEditUserData = async (id, nome, email) => {
     const resultado = await response.json();
 
     if (!response.ok) {
-      showModal("alert", `Erro na edição: ${resultado.erro}`);
+      showModal("alert", `Resultado da Edição: ${resultado.erro}`);
     } else {
       showModal("alert", resultado.mensagem, () => {
         window.location.replace("index.php");
