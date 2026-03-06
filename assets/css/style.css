@@ -1,18 +1,99 @@
+:root{
+    /* fundo e layout */
+    --bg-body: #f0f4f8;
+    --bg-card: rgba(255,255,255,0.45);
+    --bg-card-hover: rgba(255,255,255,0.6);
+    --bg-input: rgba(255,255,255,0.8);
+
+    /* Gradientes */
+
+    --gradient-1: rgba(0, 71, 171, 0.2);
+    --gradient-2: rgba(65, 105, 225, 0.15);
+
+
+    /* Cores de Texto */
+    --text-main: #1e293b;
+    --text-light: #ffffff;
+
+    /* Cores destaque */
+    --primary: #1e293b;
+    --secondary: #3498db;
+    --accent: #355d9c;
+
+    /* Bordas e Sombras */
+
+    --border-glass: rgba(255, 255, 255, 0.5);
+    --shadow-main: rgba(31,38,135,0.15);
+    --border-bottom: #0f466b;
+    --border-input: rgba(30, 41, 59, 0.2);
+    --shadow-focus: rgba(52, 152, 219, 0.3);
+
+    /* Botões do Modal */
+    --color-sucess: #28a745;
+    --color-sucess-hover: #218838;
+    --color-danger: #e57373;
+    --color-danger-hover: #d32f2f;
+}
+
+body.dark {
+    --bg-body: #0a0a0a; 
+    --bg-card: rgba(28, 28, 28, 0.8);
+    --bg-card-hover: rgba(45, 45, 45, 0.9);
+    --bg-input: rgba(0, 0, 0, 0.5);
+
+    --gradient-1: rgba(0, 255, 255, 0.05);
+    --gradient-2: rgba(0, 255, 0, 0.02);
+
+    --text-main: #e2e8f0;
+    --primary: #10b981; /* Verde esmeralda */
+    --secondary: #34d399;
+    --accent: #059669;
+
+    --border-glass: rgba(255, 255, 255, 0.05);
+    --border-bottom: #10b981;
+}
+
+
+
+
 body {
-   background-color: #f0f4f8;
+   background-color: var(--bg-body);
    
     background-image: 
-        /* Azul Cobalto no canto superior esquerdo */
-        radial-gradient(at 0% 0%, rgba(0, 71, 171, 0.2) 0px, transparent 50%),
-        /* Azul Royal no canto inferior direito */
-        radial-gradient(at 100% 100%, rgba(65, 105, 225, 0.15) 0px, transparent 50%);
+       
+        radial-gradient(at 0% 0%, var(--gradient-1) 0px, transparent 50%),
+     
+        radial-gradient(at 100% 100%, var(--gradient-2) 0px, transparent 50%);
        background-attachment: fixed;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #1e293b;
+    color: var(--text-main);
 
     animation: fadeInPage 0.5s ease-in-out;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+.theme-btn {
+    display: block; 
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 2px solid var(--primary);
+    padding: 8px 16px;
+    border-radius: 8px; 
+    
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px var(--shadow-main);
+}
+
+.theme-btn:hover {
+    background: var(--primary);
+    color: var(--text-light);
+    transform: translateY(-2px); 
+}
+
+
 
 @keyframes fadeInPage {
     from{
@@ -27,8 +108,8 @@ body {
 
 h1 {
     text-align: center;
-    border-bottom: 3px solid #0f466b;  
-    color: #1e293b;
+    border-bottom: 3px solid var(--border-bottom);  
+    color: var(--text-main);
     padding-bottom: 10px;
     display: inline-block; /* Para a linha não atravessar a tela toda */
     width: 100%;
@@ -49,26 +130,26 @@ ul#lista-usuarios {
 }
 
 li {
-    background: rgba(255, 255, 255, 0.45); 
+    background: var(--bg-card); 
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
 
     display: flex; 
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.5); 
+    border: 1px solid var(--border-glass); 
     border-radius: 12px;
     padding: 20px;
     list-style: none;
 
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    box-shadow: 0 8px 32px 0 var(--shadow-main);
     transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
 }
 
 li:hover {
     transform: translateY(-8px); 
-    background: rgba(255, 255, 255, 0.6); 
-    border: 2px solid #3498db;
-    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+    border: 2px solid var(--secondary);
+    box-shadow: 0 12px 40px 0 var(--shadow-main);
+    background-color: var(--bg-card-hover);
 }
 
 div#text{
@@ -99,18 +180,18 @@ a[href="cadastrar.php"]{
    display: block;
    text-align: center;
    margin: 40px auto;
-   border: 2px solid #355d9c;
-   background-color: white;
+   border: 2px solid var(--accent);
+   background-color: var(--text-light);
    border-radius: 20px;
    font-weight: bold;
-   color: #1e293b;
+   color: var(--primary);
    transition: color 0.4s , background-color 0.4s;
    
 }
 
 a[href="cadastrar.php"]:hover{
-     color: white;
-     background-color: #1e293bd2;
+     color: var(--text-light);
+     background-color: var(--primary);
      
 }
 
@@ -123,15 +204,15 @@ p#aviso{
 
 
 form {
-    background: rgba(255, 255, 255, 0.45);
+    background: var(--bg-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--border-glass);
     border-radius: 20px;
     padding: 40px;
     max-width: 450px;
     margin: 40px auto;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    box-shadow: 0 8px 32px 0 var(--shadow-main);
 }
 
 /* Estilizando os campos de entrada */
@@ -139,24 +220,25 @@ input[type="text"], input[type="email"], input[type="password"] {
     width: 100%;
     padding: 12px;
     margin: 8px 0 20px 0;
-    border: 1px solid rgba(30, 41, 59, 0.2);
+    border: 1px solid var(--border-input);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--bg-input);
     display: block;
     box-sizing: border-box; /* Garante que o padding não quebre a largura */
+    color: var(--text-main);
 }
 
 input:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    border-color: var(--secondary);
+    box-shadow: 0 0 8px var(--shadow-focus);
 }
 
 /* Botões */
 button[type="submit"] {
     width: 100%;
-    background: #1e293b;
-    color: white;
+    background: var(--primary);
+    color: var(--text-light);
     padding: 15px;
     border: none;
     border-radius: 10px;
@@ -166,7 +248,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background: #3498db;
+    background: var(--secondary);
     transform: translateY(-2px);
 }
 
@@ -177,17 +259,17 @@ button[onclick="javascript:location.replace('index.php')"] {
    display: block;
    text-align: center;
    margin: 40px auto;
-   border: 2px solid #355d9c;
-   background-color: white;
+   border: 2px solid var(--accent);
+   background-color: var(--text-light);
    border-radius: 20px;
    font-weight: bold;
-   color: #1e293b;
+   color: var(--primary);
    transition: color 0.4s , background-color 0.4s;
 }
 
 button[onclick="javascript:location.replace('index.php')"]:hover {
-     color: white;
-     background-color: #1e293bd2;
+     color: var(--text-light);
+     background-color: var(--primary);
      cursor: pointer;
 }
 
@@ -195,9 +277,9 @@ button[onclick="javascript:location.replace('index.php')"]:hover {
 /* Logout */
 
 a[href="logout.php"]{
-    border: 2px solid #355d9c;
-    background-color: white;
-    color: #1e293b;
+    border: 2px solid var(--accent);
+    background-color: var(--text-light);
+    color: var(--primary);
     font-weight: bold;
     border-radius: 10px;
     padding: 6px;
@@ -209,8 +291,8 @@ a[href="logout.php"]{
 }
 
 a[href="logout.php"]:hover{
-    background-color: #355d9c;
-    color: white;
+    background-color: var(--accent);
+    color: var(--text-light);
     cursor: pointer;
 }
 
@@ -256,26 +338,29 @@ button#togglePassword:hover{
 
 /* Conteúdo do Modal */
   .modal-content {
-    background-color: #fff;
+    background-color: var(--bg-body);
+    backdrop-filter: blur(15px);
+    color: var(--text-main);
     padding: 20px;
     border-radius: 8px;
     text-align: center;
     width: 300px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px var(--shadow-main);
+    border: 1px solid var(--border-glass);
   }
 
 
   .modal-message {
     font-size: 1.2rem;
-    color: #333;
+    color: var(--text-main);
     margin-bottom: 15px;
     font-family: sans-serif; /* Ou a que você preferir */
 }
 
   /* Botão de Fechar */
   .btnOk {
-    background-color: #4c98af;
-    color: white;
+    background-color: var(--accent);
+    color: var(--text-light);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -285,20 +370,18 @@ button#togglePassword:hover{
   }
   
   .btnOk:hover {
-    background-color: #274b57;
+    background-color: var(--primary);
   }
 
 /* Botões de Confirmação e Cancelamento */
 .confirm-btn,
 .cancel-btn {
-    background-color: #28a745; /* Cor verde para o "Confirmar" */
-    color: white;
+    color: var(--text-light);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
     border-radius: 4px;
-   
     width: 45%; /* Para os botões ficarem em linha reta no modal */
     transition: background-color 0.3s ease;
     display: inline-block;
@@ -306,19 +389,19 @@ button#togglePassword:hover{
 }
 
 .confirm-btn {
-    background-color: #28a746af; /* Verde */
+    background-color: var(--color-sucess); 
 }
 
 .confirm-btn:hover {
-    background-color: #218838; /* Escurece um pouco quando passar o mouse */
+    background-color:  var(--color-sucess-hover); 
 }
 
 .cancel-btn {
-    background-color:#e57373; /* Vermelho */
+    background-color: var(--color-danger); 
 }
 
 .cancel-btn:hover {
-    background-color: #fc0a0a; /* Vermelho mais forte */
+    background-color: var(--color-danger-hover); 
 }
 
 .modal.show {

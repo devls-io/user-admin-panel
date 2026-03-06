@@ -156,3 +156,18 @@ const checkEmptyList = () => {
     titulo.after(emptyMessage);
   }
 };
+
+// Tema Claro e Escuro
+
+const btnThemeToggle = document.getElementById("theme-toggle");
+
+btnThemeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  const novoTema = document.body.classList.contains("dark") ? "dark" : "light";
+
+  btnThemeToggle.innerHTML =
+    novoTema === "dark" ? "Alterar Tema ☀️" : "Alterar Tema 🌙 ";
+
+  document.cookie = `theme=${novoTema}; max-age=${30 * 24 * 60 * 60}; path=/`;
+});
