@@ -122,3 +122,15 @@ Nesta versão, o foco foi a implementação de uma camada de autenticação e me
 - **Organização de Código**: Reestruturação completa das pastas para garantir a separação de responsabilidades (SoC). [cite: 2026-02-19]
 
 ![Login](./assets/images/login.PNG)
+
+### **Versão 1.2 - Março/2026 (Atual)**
+
+Nesta atualização, o foco foi a personalização da interface, refinamento na persistência de dados e estabilidade da API:
+
+- **Sistema de Temas Dinâmicos**: Implementação de _Light Mode_ e o exclusivo tema _Deep Forest_ (Dark Mode), com alternância via JavaScript e persistência via **Cookies PHP**, garantindo que a preferência do usuário seja mantida entre sessões.
+- **Design System com CSS Variables**: Refatoração completa das folhas de estilo para utilização de variáveis globais, facilitando a manutenção e a escalabilidade das cores e componentes.
+- **Componentização com PHP**: Transformação da lógica do botão de tema em um componente reutilizável (`helpers/theme.php`), seguindo o princípio **DRY (Don't Repeat Yourself)**.
+- **Estabilidade da API (Hotfix)**: Correção de bug crítico na lógica de atualização (`UPDATE`), tratando retornos nulos e evitando erros de _undefined_ quando o formulário é enviado sem alterações.
+- **Transições de Interface**: Adição de transições suaves (`transition: background-color 0.4s`) para as trocas de estado de cores, elevando a percepção de qualidade da UI.
+
+![Login](./assets/images/dark_theme.PNG)
