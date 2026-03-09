@@ -2,6 +2,7 @@
 require_once 'helpers/auth_check.php';
 require_once 'data/get_user.php';
 require_once 'config/connection.php';
+include 'helpers/theme.php';
 
 $id = $_GET['id'] ?? null;
 $nome = "";
@@ -23,6 +24,7 @@ try{
     $erro = "Sistema temporariamente Indisponivel";
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +37,8 @@ try{
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="<?= $classeBody ?>">
+    
     <h1>Bem vindo a página de edição</h1>
 
     <?php if(isset($erro)):?>

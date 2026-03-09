@@ -126,7 +126,7 @@ const sendEditUserData = async (id, nome, email) => {
     const resultado = await response.json();
 
     if (!response.ok) {
-      showModal("alert", `Erro na edição: ${resultado.erro}`);
+      showModal("alert", `Resultado da Edição: ${resultado.erro}`);
     } else {
       showModal("alert", resultado.mensagem, () => {
         window.location.replace("index.php");
@@ -156,3 +156,18 @@ const checkEmptyList = () => {
     titulo.after(emptyMessage);
   }
 };
+
+// Tema Claro e Escuro
+
+const btnThemeToggle = document.getElementById("theme-toggle");
+
+btnThemeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  const novoTema = document.body.classList.contains("dark") ? "dark" : "light";
+
+  btnThemeToggle.innerHTML =
+    novoTema === "dark" ? "Alterar Tema ☀️" : "Alterar Tema 🌙 ";
+
+  document.cookie = `theme=${novoTema}; max-age=${30 * 24 * 60 * 60}; path=/`;
+});

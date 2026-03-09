@@ -2,6 +2,7 @@
 require_once 'helpers/auth_check.php';
 require_once 'data/list_users.php';
 require_once 'config/connection.php';
+include 'helpers/theme.php'; 
 
 
 try{
@@ -13,6 +14,8 @@ try{
 
     error_log("Erro Crítico: " . $e->getMessage(), 3, __DIR__ . '/logs_do_sistema.txt');
 }
+
+
 
 
 ?>
@@ -27,8 +30,11 @@ try{
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="<?= $classeBody ?>">
+    
     <h1>Lista de Usuários do banco de dados</h1>
+
+
 
     <?php if(isset($erroConexao)):?>
     <p><?= $erroConexao ?></p>
@@ -61,7 +67,6 @@ try{
 
 
     <a href="cadastrar.php">Inserir Novo Registro</a>
-
     <a href="logout.php">Logout</a>
 </body>
 <script src="assets/js/modal.js"></script>
