@@ -1,4 +1,7 @@
-<?php require_once 'helpers/auth_check.php'?>
+<?php require_once 'helpers/auth_check.php';
+include 'helpers/theme.php';
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,8 +12,10 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="<?= $classeBody ?>">
+
     <h1>Cadastro de novos registros</h1>
+
 
     <form id="insertForm">
         <fieldset>

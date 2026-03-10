@@ -45,13 +45,14 @@ try {
         'mensagem' => 'Registro atualizado!'
     ], 200);
 } else {
-    // Se caiu aqui, nada foi alterado (ou o ID não existe, ou os dados eram idênticos)
     sendJson([
         'sucesso' => false,
-        'error' => 'Usuário não encontrado ou nenhuma alteração realizada.'
+        'erro' => 'Nenhuma alteração foi realizada nos dados.'
     ], 404); 
 }
-    
+
+
+
 } catch (PDOException $e) {
     error_log("Erro de banco no Update (ID $id): " . $e->getMessage(), 3, __DIR__ . '/../logs_do_sistema.txt');
 

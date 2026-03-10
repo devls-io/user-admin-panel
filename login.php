@@ -1,3 +1,8 @@
+<?php 
+include 'helpers/theme.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,9 +13,10 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body>
+<body class="<?= $classeBody ?>">
+
     <h1>Bem vindo ao Sistema</h1>
-    <p>Por favor preencha os campos abaixo</p>
+   
 
     <form id="loginForm">
         <fieldset>
