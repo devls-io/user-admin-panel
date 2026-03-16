@@ -31,7 +31,7 @@ try{
 </head>
 
 <body class="<?= $classeBody ?>">
-    
+
     <h1>Lista de Usuários do banco de dados</h1>
 
 
@@ -49,10 +49,15 @@ try{
     <?php if(!empty($UsersList)):?>
     <ul id="lista-usuarios">
         <?php foreach($UsersList as $user):?>
-        <li>
-            <div id="text"><strong>Nome:</strong> <?= $user['nome'] ?></div>
+        <li class="user-card">
 
-            <div id="actions">
+            <div class="user-avatar">
+                <img src="assets/uploads/avatars/<?= $user['image']?>" alt="Foto de <?= $user['nome'] ?>">
+            </div>
+
+            <div class="user-content"><strong>Nome:</strong> <?= $user['nome'] ?></div>
+
+            <div class="user-actions">
                 <button data-name="<?= $user['nome'] ?>" data-id="<?= $user['id'] ?>" title="Apagar Registro">
                     🗑️
                 </button>

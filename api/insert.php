@@ -3,12 +3,12 @@ require_once '../config/connection.php';
 require_once '../helpers/response.php';
 
 try{
-    $jsonRecebido = file_get_contents("php://input");
-    $dados = json_decode($jsonRecebido);
+    // Receber dados pelo FormData em vez de JSON
 
-    // Limpeza Basica
-    $nome = trim($dados->nome ?? '');
-    $email = trim($dados->email ?? '');
+    $nome = trim($_POST['nome'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $imagem_nome = 'default-avatar.png'; // Padrão inicialmente
+
 
     if(empty($nome)){
         sendJson(['sucesso'=> false, 'erro'=> 'Nome inválido'], 400);
@@ -20,12 +20,44 @@ try{
         exit;
     };
 
+    // Lógica para upload de imagem
+    if(isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK){
+        $arquivo = $_FILES['avatar'];
+        $extensao = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
+        $permitidos = ['jpg' , 'jpeg' , 'png' , 'webp'];
+
+        if(!in_array($extensao, $permitidos)){
+            sendJson(['sucesso'=> false , 'erro'=> 'Formato inválido! use JPG, PNG, JPEG ou WebP.'], 400);
+            exit;
+        }
+
+        if($arquivo['size'] > 2 * 1024 * 1024){
+            sendJson(['sucesso'=> false, 'erro'=> 'Imagem muito grande! Limite de 2MB'], 400);
+            exit;
+        }
+
+        // Processamento da Imagem
+        $novo_nome = uniqid('avatar_') . '.' . $extensao;
+        $destino = __DIR__ . '/../assets/uploads/avatars/' . $novo_nome;
+
+        if(move_uploaded_file($arquivo['tmp_name'], $destino)){
+            $imagem_nome = $novo_nome;
+        } else {
+            sendJson(['sucesso'=> false, 'erro'=> 'Falha ao salvar a imagem no servidor.'], 500);
+            exit;
+        }
+
+        
+    }
+
+    // Conexão e Comandos para o Banco
     $pdo = connectToDb();
 
-    $sql = "INSERT INTO usuarios (nome, email) VALUES (:nome, :email)";
+    $sql = "INSERT INTO usuarios (nome, email, image) VALUES (:nome, :email, :image)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':image' , $imagem_nome);
     $stmt->execute();
 
     sendJson([
