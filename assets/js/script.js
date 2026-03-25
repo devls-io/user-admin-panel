@@ -51,22 +51,21 @@ if (insertForm) {
   insertForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const campoNome = document.getElementById("nome").value;
-    const campoEmail = document.getElementById("email").value;
+    //Captura TUDO (nome, email e a imagem do avatar)
+    const formData = new FormData(insertForm);
 
-    if (campoNome && campoEmail) {
-      // Função para executar o insert
-      sendUserData(campoNome, campoEmail);
+    if (formData.get("nome") && formData.get("email")) {
+      sendUserData(formData);
     }
   });
 }
 
-const sendUserData = async (nome, email) => {
+const sendUserData = async (formData) => {
   try {
     const response = await fetch("api/insert.php", {
       method: "POST",
-      headers: { "Content-Type": "Application/json" },
-      body: JSON.stringify({ nome, email }),
+      // Sem JSON dessa vez enviamos com formData
+      body: formData,
     });
 
     const resultado = await response.json();
@@ -77,6 +76,8 @@ const sendUserData = async (nome, email) => {
       showModal("alert", resultado.mensagem);
 
       insertForm.reset();
+      document.querySelector(".avatar-preview img").src =
+        "assets/uploads/avatars/default-avatar.png";
     }
   } catch (error) {
     showModal(
@@ -104,23 +105,25 @@ if (editForm) {
     e.preventDefault();
 
     const id = editForm.dataset.id;
-    const campoNome = document.getElementById("nome").value;
-    const campoEmail = document.getElementById("email").value;
+    const formData = new FormData(editForm);
+
+    // Adicionar o id ao formData
+
+    formData.append("id", id);
 
     // Função para editar
 
-    if (campoNome && campoEmail) {
-      sendEditUserData(id, campoNome, campoEmail);
+    if (formData.get("nome") && formData.get("email")) {
+      sendEditUserData(formData);
     }
   });
 }
 
-const sendEditUserData = async (id, nome, email) => {
+const sendEditUserData = async (formData) => {
   try {
     const response = await fetch("api/update.php", {
       method: "POST",
-      headers: { "Content-Type": "Application/json" },
-      body: JSON.stringify({ id, nome, email }),
+      body: formData,
     });
 
     const resultado = await response.json();
@@ -171,3 +174,35 @@ btnThemeToggle.addEventListener("click", () => {
 
   document.cookie = `theme=${novoTema}; max-age=${30 * 24 * 60 * 60}; path=/`;
 });
+
+// Lógica do preview da imagem
+
+const avatarInput = document.getElementById("avatar");
+const previewImage = document.querySelector(".avatar-preview img");
+
+if (avatarInput && previewImage) {
+  avatarInput.addEventListener("change", (e) => {
+    const file = e.target.files[0]; // O primeiro arquivo
+
+    if (file) {
+      const extensoesPermitidas = [
+        "image/jpeg",
+        "image/png",
+        "image/jpg",
+        "image/webp",
+      ];
+
+      if (!extensoesPermitidas.includes(file.type)) {
+        showModal(
+          "alert",
+          "Ei! Isso não é uma imagem válida. Escolha um JPG, PNG, JPEG ou WebP",
+        );
+        e.target.value = "";
+        return;
+      }
+
+      const url = URL.createObjectURL(file);
+      previewImage.src = url;
+    }
+  });
+}

@@ -129,7 +129,7 @@ ul#lista-usuarios {
     padding: 0;
 }
 
-li {
+li.user-card {
     background: var(--bg-card); 
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
@@ -140,7 +140,7 @@ li {
     border-radius: 12px;
     padding: 20px;
     list-style: none;
-
+    gap: 10px;
     box-shadow: 0 8px 32px 0 var(--shadow-main);
     transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
 }
@@ -152,31 +152,47 @@ li:hover {
     background-color: var(--bg-card-hover);
 }
 
-div#text{
-    flex: 1
+.user-avatar img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    display: block;
+    box-shadow: 0 2px 8px var(--shadow-main);
 }
 
-div#actions{
-    vertical-align: middle;
-    padding: 4px;
+div.user-content{
+    flex: 1;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+div.user-actions{
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 
-div#actions button:hover{
+.user-actions button:hover{
     cursor: pointer;
 }
 
-div#actions a, div#actions button{
+.user-actions a, 
+.user-actions button {
     font-size: 20px;
     border: none;
     background-color: transparent;
-    
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
  
 a[href="cadastrar.php"]{
    padding: 6px;
    width: 50%;
+   max-width: 300px;
    display: block;
    text-align: center;
    margin: 40px auto;
@@ -284,6 +300,7 @@ a[href="logout.php"]{
     border-radius: 10px;
     padding: 6px;
     width: 20%;
+    max-width: 300px;
     text-align: center;
     display: block;
     margin: 0 auto;
@@ -409,6 +426,36 @@ button#togglePassword:hover{
     opacity: 1; /* Deixa ele visível com animação */
 }
 
+
+/* Avatar */
+
+/* Container Principal do upload */
+
+.avatar-upload-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.avatar-preview{
+    margin: 1rem 0;
+}
+
+.avatar-preview img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    box-shadow: var(--border-bottom);
+}
+
+input[type="file"]{
+    cursor: pointer;
+    
+    
+}
 
 
 

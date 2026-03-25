@@ -20,6 +20,14 @@ include 'helpers/theme.php';
     <form id="insertForm">
         <fieldset>
             <legend>Dados Pessoais</legend>
+            <div class="avatar-upload-container">
+                <label for="avatar">Foto de Perfil</label>
+                <div class="avatar-preview">
+                    <img src="assets/uploads/avatars/default-avatar.png" alt="Preview do Avatar">
+                </div>
+                <input type="file" name="avatar" id="avatar" accept="image/*">
+            </div>
+
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome" placeholder="Seu nome" required>
             <label for="email">Email</label>
