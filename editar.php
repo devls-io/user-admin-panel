@@ -38,7 +38,7 @@ try{
 </head>
 
 <body class="<?= $classeBody ?>">
-    
+
     <h1>Bem vindo a página de edição</h1>
 
     <?php if(isset($erro)):?>
@@ -49,6 +49,13 @@ try{
     <form id="editForm" data-id="<?= $id ?>">
         <fieldset>
             <legend>Alterar Dados Pessoais</legend>
+            <div class="avatar-upload-container">
+                <label for="avatar">Foto de Perfil</label>
+                <div class="avatar-preview">
+                    <img src="assets/uploads/avatars/<?= $userData['image'] ?>" alt="Foto de <?= $userData['nome'] ?>">
+                </div>
+                <input type="file" name="avatar" id="avatar" accept="image/*">
+            </div>
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome" required placeholder="Seu nome" value="<?= $nome ?>">
             <label for="email">Email</label>

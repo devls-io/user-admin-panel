@@ -123,7 +123,7 @@ Nesta versão, o foco foi a implementação de uma camada de autenticação e me
 
 ![Login](./assets/images/login.PNG)
 
-### **Versão 1.2 - Março/2026 (Atual)**
+### **Versão 1.2 - Março/2026**
 
 Nesta atualização, o foco foi a personalização da interface, refinamento na persistência de dados e estabilidade da API:
 
@@ -134,3 +134,15 @@ Nesta atualização, o foco foi a personalização da interface, refinamento na 
 - **Transições de Interface**: Adição de transições suaves (`transition: background-color 0.4s`) para as trocas de estado de cores, elevando a percepção de qualidade da UI.
 
 ![Login](./assets/images/dark_theme.PNG)
+
+### **Versão 1.3 - Março/2026 (Atual)**
+
+Nesta atualização, o foco foi a implementação do sistema de mídia, gerenciamento de arquivos no servidor e otimização de storage:
+
+- **Sistema de Avatars Dinâmico:** Suporte completo para upload de fotos de perfil nos formatos `PNG`, `JPG`, `JPEG` e `WebP`, com limite de segurança de **2MB** por arquivo.
+- **Gestão de Lifecycle de Imagens (Garbage Collection):** Implementação de lógica para evitar arquivos órfãos no servidor. O sistema detecta trocas de fotos ou deleção de usuários e remove automaticamente o arquivo físico antigo via `unlink()`.
+- **Fallback de Segurança:** Sistema de "Avatar Default" para garantir que usuários sem foto mantenham a consistência visual da interface sem quebras de layout.
+- **UI de Gerenciamento:** Refinamento dos cards de usuário para exibição das fotos com molduras dinâmicas integradas ao tema _Deep Forest_.
+
+![Print da Versão 1.3](./assets/images/editar-avatar.png)
+![Print da Versão 1.3](./assets/images/avatars.png)
