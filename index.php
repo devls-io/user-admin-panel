@@ -7,7 +7,31 @@ include 'helpers/theme.php';
 
 try{
     $pdo = connectToDb();
-    $UsersList = listAllUsers($pdo);
+
+    $itensPorPagina = 3;
+    $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1 ;
+    if($paginaAtual < 1) $paginaAtual = 1;
+
+
+    // Pegar o total para saber quando parar as setinhas
+    $totalUsuarios = countTotalUsers($pdo);
+    $totalPaginas = ceil($totalUsuarios / $itensPorPagina);
+
+    // Impedir que o usuário digite página que não existe
+    // deve ser maior que 0 para não dar offset negativo
+    if($paginaAtual > $totalPaginas && $totalPaginas > 0){
+        $paginaAtual = $totalPaginas; // envia pra ultima pag
+    }
+
+    // Cálculo do OFFSET
+    $offset = ($paginaAtual -1) * $itensPorPagina;
+
+    // pegar os dados "fatiados"
+    $UsersList = listAllUsers($pdo, $itensPorPagina, $offset);
+
+    
+
+
 } catch (PDOException $e) {
     $UsersList = [];
     $erroConexao = "OPS! Estamos com uma instabilidade";
@@ -68,6 +92,24 @@ try{
         <?php endforeach;?>
     </ul>
     <?php endif?>
+
+    <div id="paginacao">
+        <?php if($paginaAtual > 1): ?>
+        <a href="index.php?pagina=<?= $paginaAtual -1 ?>">
+            ⬅️ Anterior
+        </a>
+        <?php endif ;?>
+
+        <span>Página <?= $paginaAtual ?> de <?= $totalPaginas ?></span>
+
+        <?php if($paginaAtual < $totalPaginas):?>
+        <a href="index.php?pagina=<?= $paginaAtual + 1 ?>">
+            Próximo ➡️
+        </a>
+        <?php endif;?>
+
+
+    </div>
 
 
 
