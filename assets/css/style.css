@@ -515,6 +515,33 @@ body.dark #paginacao a:hover {
     color: var(--text-light);
 }
 
+/* Input de Busca */
 
+.search-container {
+    margin: 20px auto;
+    max-width: 600px;
+    width: 90%;
+}
+
+#input-busca {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    border-radius: 25px;
+    color: var(--text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-main);
+}
+
+#input-busca:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 10px var(--shadow-focus);
+    background: var(--bg-card-hover);
+}
 
 

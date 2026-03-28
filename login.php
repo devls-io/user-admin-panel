@@ -2,7 +2,6 @@
 include 'helpers/theme.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -16,7 +15,7 @@ include 'helpers/theme.php';
 <body class="<?= $classeBody ?>">
 
     <h1>Bem vindo ao Sistema</h1>
-   
+
 
     <form id="loginForm">
         <fieldset>

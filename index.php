@@ -8,14 +8,22 @@ include 'helpers/theme.php';
 try{
     $pdo = connectToDb();
 
+    // Termo de busca
+
+    $termoBusca = isset($_GET['busca']) ? trim($_GET['busca']) : '';
+
     $itensPorPagina = 3;
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1 ;
     if($paginaAtual < 1) $paginaAtual = 1;
 
 
+
+
     // Pegar o total para saber quando parar as setinhas
-    $totalUsuarios = countTotalUsers($pdo);
+    $totalUsuarios = countTotalUsers($pdo, $termoBusca);
     $totalPaginas = ceil($totalUsuarios / $itensPorPagina);
+
+
 
     // Impedir que o usuário digite página que não existe
     // deve ser maior que 0 para não dar offset negativo
@@ -27,7 +35,7 @@ try{
     $offset = ($paginaAtual -1) * $itensPorPagina;
 
     // pegar os dados "fatiados"
-    $UsersList = listAllUsers($pdo, $itensPorPagina, $offset);
+    $UsersList = listAllUsers($pdo, $itensPorPagina, $offset, $termoBusca);
 
     
 
@@ -70,6 +78,10 @@ try{
 
     <?php endif?>
 
+    <div class="search-container">
+        <input type="search" id="input-busca" placeholder="Buscar usuário por nome..." autocomplete="off">
+    </div>
+
     <?php if(!empty($UsersList)):?>
     <ul id="lista-usuarios">
         <?php foreach($UsersList as $user):?>
@@ -95,15 +107,19 @@ try{
 
     <div id="paginacao">
         <?php if($paginaAtual > 1): ?>
-        <a href="index.php?pagina=<?= $paginaAtual -1 ?>">
+        <a href="index.php?pagina=<?= $paginaAtual -1 ?>&busca=<?= urlencode($termoBusca) ?>">
             ⬅️ Anterior
         </a>
         <?php endif ;?>
 
+
+
         <span>Página <?= $paginaAtual ?> de <?= $totalPaginas ?></span>
 
+
+
         <?php if($paginaAtual < $totalPaginas):?>
-        <a href="index.php?pagina=<?= $paginaAtual + 1 ?>">
+        <a href="index.php?pagina=<?= $paginaAtual + 1 ?>&busca=<?= urldecode($termoBusca) ?>">
             Próximo ➡️
         </a>
         <?php endif;?>
@@ -116,6 +132,7 @@ try{
     <a href="cadastrar.php">Inserir Novo Registro</a>
     <a href="logout.php">Logout</a>
 </body>
+<script src="assets/js/search.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/script.js"></script>
 
