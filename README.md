@@ -146,3 +146,33 @@ Nesta atualização, o foco foi a implementação do sistema de mídia, gerencia
 
 ![Print da Versão 1.3](./assets/images/editar-avatar.png)
 ![Print da Versão 1.3](./assets/images/avatars.png)
+
+## Versão 1.4 - Abril/2026 (Atual)
+
+Nesta atualização, o foco foi a **escalabilidade do sistema** através da implementação de navegação inteligente e busca dinâmica em tempo real:
+
+### Sistema de Paginação Dinâmica (Offset-based)
+
+Implementação de lógica SQL com `LIMIT` e `OFFSET` para gerenciar grandes volumes de dados, dividindo a exibição em páginas e otimizando o carregamento do banco de dados.
+
+### Filtro de Busca em Tempo Real (AJAX/Fetch)
+
+Integração de busca assíncrona utilizando a **Fetch API**. O sistema realiza filtragem por nome via operador `LIKE` no MySQL, sem necessidade de recarregar a página (F5).
+
+### Gerenciamento de Estado e UX
+
+Utilização da **History API (`pushState`)** para manter a URL sincronizada com a busca e a página atual, permitindo que o usuário:
+
+- Compartilhe links de resultados específicos
+- Utilize os botões de navegação do navegador (voltar/avançar)
+
+### Técnica de Debouncing e DOMParser
+
+Otimização de performance no front-end para:
+
+- Evitar requisições excessivas ao servidor durante a digitação (debouncing)
+- Atualizar a interface de forma granular utilizando `DOMParser` (técnica **PJAX**)
+
+![Print da Versão 1.4](./assets/images/pagination.PNG)
+
+![Print da Versão 1.4](./assets/images/filter.PNG)
