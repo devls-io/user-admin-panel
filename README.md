@@ -173,5 +173,6 @@ Otimização de performance no front-end para:
 - Evitar requisições excessivas ao servidor durante a digitação (debouncing)
 - Atualizar a interface de forma granular utilizando `DOMParser` (técnica **PJAX**)
 
-![Print da Versão 1.3](./assets/images/pagination.png)
-![Print da Versão 1.3](./assets/images/filter.png)
+![Print da Versão 1.4](./assets/images/pagination.png)
+
+![Print da Versão 1.4](./assets/images/filter.png)
