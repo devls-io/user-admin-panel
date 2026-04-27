@@ -6,7 +6,7 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-Este projeto é um **Painel Administrativo v1.0** desenvolvido para consolidar conhecimentos em comunicação assíncrona entre o Front-end e o Back-end. O foco principal foi sair da teoria e implementar um fluxo de dados real utilizando **Vanilla JS** e **PHP PDO**.
+Este projeto é um **Painel Administrativo** desenvolvido para consolidar conhecimentos em comunicação assíncrona entre o Front-end e o Back-end. O foco principal foi sair da teoria e implementar um fluxo de dados real utilizando **Vanilla JS** e **PHP PDO**.
 
 ## 📂 Estrutura do Projeto
 
@@ -69,6 +69,19 @@ CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
+    image VARCHAR(255) DEFAULT 'default-avatar.png',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+4. Agora crie a tabela de Admins
+
+```sql
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
@@ -114,12 +127,12 @@ O projeto foi construído com foco em integridade de dados e boas práticas de s
 
 Nesta versão, o foco foi a implementação de uma camada de autenticação e melhorias na experiência do usuário (UX):
 
-- **Sistema de Login**: Implementação de autenticação de administradores com sessões seguras e proteção de rotas via PHP. [cite: 2026-02-19]
-- **Segurança de Senhas**: Uso de `password_hash` e `password_verify` para armazenamento seguro de credenciais. [cite: 2026-02-19]
+- **Sistema de Login**: Implementação de autenticação de administradores com sessões seguras e proteção de rotas via PHP.
+- **Segurança de Senhas**: Uso de `password_hash` e `password_verify` para armazenamento seguro de credenciais.
 - **Refatoração UI/UX**:
-  - **Visibilidade de Senha**: Adicionada alternância de visibilidade (ícone de olho) utilizando JavaScript puro e manipulação de DOM. [cite: 2026-02-19]
-  - **Transição de Páginas**: Implementação de transição suave (_fade-in_) entre páginas via CSS para uma navegação mais fluida e profissional. [cite: 2026-02-19]
-- **Organização de Código**: Reestruturação completa das pastas para garantir a separação de responsabilidades (SoC). [cite: 2026-02-19]
+  - **Visibilidade de Senha**: Adicionada alternância de visibilidade (ícone de olho) utilizando JavaScript puro e manipulação de DOM.
+  - **Transição de Páginas**: Implementação de transição suave (_fade-in_) entre páginas via CSS para uma navegação mais fluida e profissional.
+- **Organização de Código**: Reestruturação completa das pastas para garantir a separação de responsabilidades (SoC).
 
 ![Login](./assets/images/login.PNG)
 
@@ -135,7 +148,7 @@ Nesta atualização, o foco foi a personalização da interface, refinamento na 
 
 ![Login](./assets/images/dark_theme.PNG)
 
-### **Versão 1.3 - Março/2026 (Atual)**
+### **Versão 1.3 - Março/2026**
 
 Nesta atualização, o foco foi a implementação do sistema de mídia, gerenciamento de arquivos no servidor e otimização de storage:
 

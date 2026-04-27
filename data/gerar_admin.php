@@ -1,11 +1,12 @@
+<!-- Arquivo apenas para uso local -->
 <?php 
 require_once '../config/connection.php';
 $pdo = connectToDb();
 
 // basta mudar os dados abaixo para criar um novo admin
-$nome = "Leonardo"; 
-$email = "leoAdmin@email.com";
-$senha_pura = "phpSecretsHash";
+$nome = "nomeAdmin"; 
+$email = "email@email.com";
+$senha_pura = "senhaAdmin";
 
 $senha_hash = password_hash($senha_pura, PASSWORD_DEFAULT);
 
